@@ -47,26 +47,26 @@ render() {
 //   }
 // }
 
-function Api() {
-  return (
+// function Api() {
+//   return (
   
-     class App extends Component {
-       constructor(){
-         super();
-       }
-       componentWillMount(){
-         this.getApi();
-       }
-       getApi(){
-         var xr=new XMLHttpRequest();
-         xr.addEventListener('load',() => {console.log(xr.response)}) ;
-         xr.open('GET','https://dog.ceo/api/breeds/list/all');
-         xr.send();
-       }
-     }
-  );
+//      class App extends Component {
+//        constructor(){
+//          super();
+//        }
+//        componentWillMount(){
+//          this.getApi();
+//        }
+//        getApi(){
+//          var xr=new XMLHttpRequest();
+//          xr.addEventListener('load',() => {console.log(xr.response)}) ;
+//          xr.open('GET','https://dog.ceo/api/breeds/list/all');
+//          xr.send();
+//        }
+//      }
+//   );
 
-}
+// }
 const apiElement=(
   <div  className="card">
   <h2 style={{color:'black'}}>This is the testing Boostrap File</h2>
