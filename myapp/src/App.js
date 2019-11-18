@@ -8,9 +8,45 @@ import './App.css';
 export default class PersonList extends React.Component{
 
   state={  
-    Persons:[]
-  };
+    hai:[]
+  }
+componentDidMount() {
+  axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
+    const hai=res.data;
+    this.setState({hai});
+  })
 }
+render() {
+  return (
+  <ul>{ this.state.hai.map(hai => [<li>{hai.name}</li>,<li>{hai.email}</li>])}
+</ul>
+  )
+}
+}
+
+
+// export default class PersonList extends React.Component {
+//   state = {
+//     persons: []
+//   }
+
+//   componentDidMount() {
+//     axios.get(`https://jsonplaceholder.typicode.com/users`)
+//       .then(res => {
+//         const persons = res.data;
+//         this.setState({ persons });
+//       })
+//   }
+
+//   render() {
+//     return (
+//       <ul>
+//         { this.state.persons.map(person => <li>{person.name}</li>)}
+//       </ul>
+//     )
+//   }
+// }
+
 function Api() {
   return (
   
@@ -60,4 +96,4 @@ ReactDom.render(apiElement,document.getElementById('test'));
  );
 //  ReactDom.render(testElement,document.getElementById('test'));
 
-export default App;
+// export default App;
