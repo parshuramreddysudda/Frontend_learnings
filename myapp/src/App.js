@@ -5,24 +5,7 @@ import logo, { ReactComponent } from './logo.svg';
 import axios from 'axios';
 import './App.css';
 
-export default class PersonList extends React.Component{
 
-  state={  
-    hai:[]
-  }
-componentDidMount() {
-  axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
-    const hai=res.data;
-    this.setState({hai});
-  })
-}
-render() {
-  return (
-  <ul>{ this.state.hai.map(hai => [<li>{hai.name}</li>,<li>{hai.email}</li>])}
-</ul>
-  )
-}
-}
 
 
 // export default class PersonList extends React.Component {
