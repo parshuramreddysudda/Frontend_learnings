@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Amcharts from '../src/amcharts/amchartWork';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const marginAuto={
+    margin:'auto'
+}
 
 class Index extends React.Component{
 
@@ -44,6 +47,33 @@ this.state={
                     </ul>
                 </div>
             </nav>
+           
+
+           
+            <div className="container" style={marginAuto}>
+             
+           <div className="row">
+<div className="col-md-6">
+    <Amcharts/>
+
+</div>
+<div className="col-md-6">
+    
+
+</div>
+<div className="col-md-6">
+    
+
+</div>
+<div className="col-md-6">
+    
+
+</div>
+
+           </div>
+              
+ 
+            </div>
             </div>
             )
     }
