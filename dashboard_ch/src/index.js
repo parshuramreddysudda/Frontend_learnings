@@ -4,6 +4,8 @@ import './index.css';
 import Amcharts from '../src/amcharts/amchartWork';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SecondChart from '../src/amcharts/secChart';
+import Third from '../src/amcharts/thirdPie';
 
 const marginAuto={
     margin:'auto'
@@ -58,12 +60,12 @@ this.state={
 
 </div>
 <div className="col-md-6">
-    
+    <SecondChart/>
 
 </div>
 <div className="col-md-6">
     
-
+<Third></Third>
 </div>
 <div className="col-md-6">
     
