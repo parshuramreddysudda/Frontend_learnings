@@ -4,15 +4,16 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import Data from '../amcharts/thirdData';
 
-
-am4core.useTheme(am4themes_animated);
+// am4core.useTheme(am4themes_animated);
 
 class SecondAm extends Component {
   componentDidMount() {
 
     // Create chart instance
-    let chart = am4core.create("chartdiv3", am4charts.PieChart);
-    
+
+    let chart = am4core.create("chartdiv4", am4charts.PieChart3D);
+    chart.paddingRight = 180;
+    chart.paddingLeft=180;
     // Add data
     chart.data = [{
       "country": "Lithuania",
@@ -53,22 +54,31 @@ class SecondAm extends Component {
     }];
     
     // Add and configure Series
-    let pieSeries = chart.series.push(new am4charts.PieSeries());
+    let pieSeries = chart.series.push(new am4charts.PieSeries3D());
     pieSeries.dataFields.value = "litres";
     pieSeries.dataFields.category = "country";
     chart.innerRadius=am4core.percent(40);
     pieSeries.slices.template.stroke=am4core.color("#ffffff");
     pieSeries.slices.template.strokeWidth=3;
     pieSeries.slices.template.strokeOpacity=2;
-    pieSeries.slices.template.propertyFields.fill="color";
-    chart.legend = new am4charts.Legend();
+    let hs = pieSeries.slices.template.states.getKey("active");
+hs.properties.shiftRadius = 0;
+let hove =pieSeries.slices.template.states.getKey("hover");
+hove.properties.scale=1;
+hove.properties.fillOpacity=0.2;
 
+ 
 
+  }
+  componentWillUnmount(){
+      if(this.chart){
+          this.chart.dispose();
+      }
   }
 
   render() {
     return (
-      <div className="container" id="chartdiv3" style={{ width: "100%", height: "500px" }}></div>
+      <div className="container" id="chartdiv4" style={{ width: "100%", height: "500px" }}></div>
     );
   }
 }
