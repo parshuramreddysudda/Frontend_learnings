@@ -1,71 +1,89 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import FolderIcon from '@material-ui/icons/Folder';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom';
+import Navigation from '../src/components/Navigation';
 
-const style=makeStyles(theme=>({
-  root:{
-    width:500,
-    margin:'auto',
-    position: 'absolute',
-	top:0,
-	bottom: 0,
-	left: 0,
-	right: 0,
+const style = makeStyles(theme => ({
+  root: {
+    // margin: 'auto',
+    color:'white',
   },
   paper: {
     padding: '16px',
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-
-
 }));
 
-// class app extends React.Component{
-//   constructor(props) {
-//     super(props)
-  
-//     this.state = {
-//        heading:'Name Changes'
-//     };
-//   }
-  
-// }
+
 function Index() {
- 
+
   const classes = style();
   const [value, setValue] = React.useState(0);
 
-  const handleChange=(event,newValue,value)=>{
-   console.log(value);
+  const handleChange = (event, newValue, value) => {
+    console.log(value);
     setValue(newValue);
- };
- 
+  };
+
   return (
 
     <div >
- 
-    <Paper style={{marginTop:'2vh',marginBottom:'1vh'}}  className={classes.paper} ><h2 >This is the Navigation bar </h2></Paper>
-    <Paper className={classes.paper}><p>This includes Routing Configuration for Futher working</p></Paper>
- 
-      <BottomNavigation value={value}  onChange={handleChange} showLabels className={classes.root}>
+   <Navigation></Navigation>
 
 
-      <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} >as</BottomNavigationAction>
-      <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-      <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
+    <div className={classes.root}>
+    <Grid container spacing={3}>
+      <Grid item xs={12} md={12}>
+      <Paper className={classes.paper}>Full Col with XS 12 MD 12 </Paper>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+      <Paper className={classes.paper}>Full Col with XS 12 SM 6</Paper>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+      <Paper className={classes.paper}>Full Col with XS 12 SM 6</Paper>
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+      <Paper className={classes.paper}>Full Col with XS 12 SM 6 MD4</Paper>
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+      <Paper className={classes.paper}>Full Col with XS 12 SM 6 MD 4</Paper>
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+      <Paper className={classes.paper}>Full Col with XS 12 SM 6 MD4</Paper>
+      </Grid>
+  
+        <Grid item md={4} xs={6}>
+          <Paper className={classes.paper}>Md a-4 xs={4}</Paper>
+        </Grid>
+        <Grid item md={4} xs={6}>
+        <Paper className={classes.paper}>Md a-4 xs={4}</Paper>
+        </Grid>
+        <Grid item md={4} xs={6}>
+        <Paper className={classes.paper}>Md a-4 xs={4}</Paper>
+        </Grid>
+      
+      <Grid container spacing={3}>
+        <Grid item md={3} sm={6}  >
+          <Paper className={classes.paper}>Md a-4 xs={4}</Paper>
+        </Grid>
+        <Grid item md={3} sm={6}  >
+        <Paper className={classes.paper}>Md a-4 xs={4}</Paper>
+        </Grid>
+        <Grid item md={3} sm={6}  >
+        <Paper className={classes.paper}>Md a-4 xs={4}</Paper>
+        </Grid>
+        <Grid item md={3} sm={6}  >
+        <Paper className={classes.paper}>Md a-4 xs={4}</Paper>
+        </Grid>
+      </Grid>
+    </Grid>
 
-      </BottomNavigation>
-        
+
+    </div>
+
+
     </div>
 
   );
