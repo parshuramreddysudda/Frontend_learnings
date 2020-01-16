@@ -1,0 +1,3 @@
+version: '2.0'
+$include: ./tags.yml
+$include: ./paths.yml
