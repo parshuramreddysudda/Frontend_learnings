@@ -1,0 +1,37 @@
+title: Flight
+type: object
+properties:
+  barcodeData:
+    type: string
+    format: binary
+  checkedInStatus:
+    type: string
+    enum:
+      - CHECKED_IN
+      - NOT_CHECKED_IN
+      - BOARDED
+  seatNumber:
+    type: string
+    example: F2
+    pattern: '^[A-Z][1-9]$'
+  seatName:
+    type: string
+    enum:
+      - SIDE_BIRTH
+      - NOT_SIDE_BIRTH
+  flightName:
+    type: string
+    enum:
+      - AIR_ASIA
+      - AIR_CARNIVAL
+      - AIR_INDIA
+      - GO_AIR
+      - ATAR_AIR
+      - AIR_BALTIC
+      - BlUE_AIR
+      - DRUK_AIR
+      - EMIRATES
+  ticketNum:
+    type: string
+    example: F2GLK5
+    pattern: '^[A-Z][1-9][A-Z][A-Z][A-Z][1-9]$'
