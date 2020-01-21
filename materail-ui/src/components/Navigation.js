@@ -48,7 +48,7 @@ function Index() {
 
         <div >
 
-            <BottomNavigation value={value} onChange={handleChange} showLabels className={classes.root}>
+            <BottomNavigation value={value} onChange={handleChange}  className={classes.root}>
 
                 <Link to={"/Home"} className={classes.margin} >
                     <BottomNavigationAction color='primary' label="Home" value="recents" icon={<RestoreIcon />} >

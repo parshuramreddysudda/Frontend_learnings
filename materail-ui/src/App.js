@@ -1,18 +1,22 @@
 import React from 'react';
 import axios from 'axios';
+import Card from '../src/components/Card';
 import Navigation from '../src/components/Navigation';
-
+import Grid from '@material-ui/core/Grid';
+ 
 
 export default class PersonList extends React.Component {
+  
   state = {
     name: '',
+    result:[],
   }
-
   handleChange = event => {
     this.setState({ name: event.target.value });
   }
 
   handleSubmit = event => {
+
     event.preventDefault();
     const Appid = '6UT6K5-TKYR993W83';
     const user = {
@@ -20,14 +24,21 @@ export default class PersonList extends React.Component {
     };
     console.log(user.name);
 
-    axios.get(`http://127.0.0.1:4010/pets`)
-      .then(res => {console.log(res.data);
+    axios.get(`https://newsapi.org/v2/everything?q=apple&from=2020-01-18&to=2020-01-18&sortBy=popularity&apiKey=66d4965851db4b4b9300f15d13443cfe`)
+      .then(res => {
+        // console.log(res.data.articles);
+        const result=res.data.articles;
+        this.setState({result});
+        // console.log(this.state.result);
       })
   }
+  
 
   render() {
+    
     return (
-      <div>
+      <div onLoad={this.MyApp}>
+
         <Navigation></Navigation>
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -36,7 +47,29 @@ export default class PersonList extends React.Component {
           </label>
           <button type="submit">Add</button>
         </form>
+        <Grid container spacing={4}>
+      
+
+        { this.state.result.map((result,i) => 
+         <Grid item md={3} sm={6}  >
+       <Card id={i} author={result.author}  title={result.title} 
+         description={result.description} url={result.urlToImage} date={result.publishedAt} 
+         content={result.content}/>  
+              </Grid >
+  
+         )
+         
+         }
+    
+       
+       </Grid>
+    
+  
+    
+
+      
       </div>
     )
   }
 }
+ 
