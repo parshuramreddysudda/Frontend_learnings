@@ -16,8 +16,6 @@ const usestyles= makeStyles(theme =>({
       paper:{
         padding:'16px;'
       }
- 
-
 }));
 export default function ContainedButtons() {
     const classes = usestyles();
