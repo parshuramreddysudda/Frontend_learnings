@@ -33,43 +33,44 @@ export default class PersonList extends React.Component {
     const Main ={
       padding:'1em',
       fontSize:'19px',
+      backgroundColor:'black',
+      color:"white",
     }
    
     const black={
       backgroundColor:'#f4f0f0',
     }
+    const darkTheme={
+      backgroundColor:'#f4f0f0',
+      color:"white",
+    }
 
 
     return (
 
-      <div >
+      <div>
 
         <Navigation></Navigation>
         <div >
           <Grid container spacing={3} >
             <Grid item md={3} xs={4}>
-            <Paper variant="outlined">hdsxcvbnkl</Paper>
+            <Paper style={Main}>Gateways</Paper>
               <Paper className={paper}>
                 <Table></Table>
-
               </Paper>
             </Grid>
             <Grid item md={8} xs={8}>
-
               <Grid item md={12} xs={12}>
                 <Paper style={head}>
                   {" "}
                   Name of Dashboard
           </Paper>
               </Grid>
-
               <Grid item md={12} xs={12}>
                 <Paper>
                   <div style={black}>
-
                   <FourButtons  ></FourButtons>
                   </div>
-               
                   <ButtonView></ButtonView>
                 </Paper>
               </Grid>

@@ -54,6 +54,7 @@ export default function FullWidthGrid() {
     <div>
       
           <TableContainer component={Paper}>
+         
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
