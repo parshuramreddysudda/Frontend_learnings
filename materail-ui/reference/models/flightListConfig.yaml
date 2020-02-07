@@ -1,0 +1,19 @@
+title: Flight
+type: object
+properties:
+  flightName:
+    type: string
+    enum:
+      - AIR_ASIA
+      - AIR_CARNIVAL
+      - AIR_INDIA
+      - GO_AIR
+      - ATAR_AIR
+      - AIR_BALTIC
+      - BlUE_AIR
+      - DRUK_AIR
+      - EMIRATES
+  codeNumber:
+    type: string
+    example: F2GLK5
+    pattern: '^[A-Z][1-9][A-Z][A-Z][A-Z][1-9]$'

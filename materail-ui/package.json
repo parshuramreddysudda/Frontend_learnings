@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prism":"prism mock --dynamic reference/flight-check-in-step-3/openapi.yaml"
+    "prisma":"prism mock --dynamic reference/flight-check-in-step-3/openapi.yaml"
   },
   "eslintConfig": {
     "extends": "react-app"

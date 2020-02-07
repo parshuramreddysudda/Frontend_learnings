@@ -19,8 +19,7 @@ const useStyles = makeStyles(theme => ({
 }));
 const StyledTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+   fontStyle:'bold',
   },
   body: {
     fontSize: 12,
@@ -30,7 +29,7 @@ const StyledTableCell = withStyles(theme => ({
 const StyledTableRow = withStyles(theme => ({
   root: {
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
+      backgroundColor: theme.palette.common.white,
     },
   },
 }))(TableRow);
