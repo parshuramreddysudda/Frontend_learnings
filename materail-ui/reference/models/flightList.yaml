@@ -22,4 +22,4 @@ paths:
 
                    
               schema:
-                $ref: flightListConfig.yaml
+                $ref: /reference/models/flightListConfig.yaml

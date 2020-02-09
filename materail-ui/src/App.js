@@ -44,6 +44,15 @@ export default class PersonList extends React.Component {
       backgroundColor:'#f4f0f0',
       color:"white",
     }
+    axios.get(`https://newsapi.org/v2/everything?q=apple&from=2020-01-18&to=2020-01-18&sortBy=popularity&apiKey=66d4965851db4b4b9300f15d13443cfe`)
+      .then(res => {
+        // console.log(res.data.articles);
+        const result = res.data.articles;
+        this.setState({ result });
+        // console.log(this.state.result);
+      })
+    
+    
 
 
     return (

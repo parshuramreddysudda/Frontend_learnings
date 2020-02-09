@@ -18,7 +18,6 @@ export default class PersonList extends React.Component {
   handleSubmit = event => {
 
     event.preventDefault();
-    const Appid = '6UT6K5-TKYR993W83';
     const user = {
       name: this.state.name
     };
