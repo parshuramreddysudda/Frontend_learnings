@@ -17,8 +17,16 @@ paths:
               examples:
                 checked-in-passenger:
                   value:
-                    flightName: AIR_INDIA
-                    codeNumber: F2GLK5
+                    flight1: AIR_INDIA1
+                    codeNumber1: F2GLK5
+                    flight2: AIR_INDIA2
+                    codeNumber2: F2GLK5
+                    flight3: AIR_INDIA3
+                    codeNumber3: F2GLK5
+                    flight4: AIR_INDIA4
+                    codeNumber4: F2GLK5
+                    flight5: AIR_INDIA5
+                    codeNumber5: F2GLK5
 
                    
               schema:
