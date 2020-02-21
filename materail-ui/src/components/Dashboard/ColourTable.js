@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -34,19 +35,13 @@ const StyledTableRow = withStyles(theme => ({
   },
 }))(TableRow);
 
-function createData(name, calories) {
-  return { name, calories};
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159),
-  createData('Ice cream sandwich', 237),
-  createData('Eclair', 262),
-  createData('Cupcake', 305),
-  createData('Gingerbread', 356),
-];
+function handleclick(){
+  alert('This click');
+  }
 
 export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5}) {
+  
+
   
   const classes = useStyles();
 
@@ -64,14 +59,17 @@ export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5})
         </TableHead>
         <TableBody>
            
-        <StyledTableRow >
+        <StyledTableRow onClick={handleclick}>
+          
               <StyledTableCell component="th" scope="row">
                 {fl1}
               </StyledTableCell>
               <StyledTableCell align="right"> {cd1}</StyledTableCell>
-            </StyledTableRow>
 
+        </StyledTableRow>
+           
             <StyledTableRow >
+            
               <StyledTableCell component="th" scope="row">
                 {fl2}
               </StyledTableCell>
