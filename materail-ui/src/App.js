@@ -12,11 +12,22 @@ import ButtonView from '../src/components/Dashboard/ButtonVIew';
 
 
 export default class PersonList extends React.Component {
-
+  
   state = {
     name: '',
-    result: [],
+    flightRes: [],
   }
+  componentDidMount() {
+    axios.get(`http://127.0.0.1:4010/flightLists`)
+    .then(res => {
+      // console.log(res.data);
+      const flightRes = res.data;
+      this.setState({ flightRes });
+      // console.log(this.state.flightRes);
+    })
+  }
+
+
   render() {
     const paper = {
       padding: "1em",
@@ -43,29 +54,21 @@ export default class PersonList extends React.Component {
     const darkTheme={
       backgroundColor:'#f4f0f0',
       color:"white",
-    }
-    axios.get(`https://newsapi.org/v2/everything?q=apple&from=2020-01-18&to=2020-01-18&sortBy=popularity&apiKey=66d4965851db4b4b9300f15d13443cfe`)
-      .then(res => {
-        // console.log(res.data.articles);
-        const result = res.data.articles;
-        this.setState({ result });
-        // console.log(this.state.result);
-      })
-    
-    
-
+    }    
+    const flightResult=this.state.flightRes;
 
     return (
 
       <div>
 
-        <Navigation></Navigation>
+        <Navigation onLoad={this.handleLoad}></Navigation>
         <div >
           <Grid container spacing={3} >
             <Grid item md={3} xs={4}>
             <Paper style={Main}>Gateways</Paper>
               <Paper className={paper}>
-                <Table></Table>
+                <Table fl1={flightResult.flight1} cd1={flightResult.codeNumber1} fl2={flightResult.flight2} cd2={flightResult.codeNumber2} fl3={flightResult.flight3} 
+                  cd3={flightResult.codeNumber3} fl4={flightResult.flight4} cd4={flightResult.codeNumber4} fl5={flightResult.flight5} cd5={flightResult.codeNumber5}  ></Table>
               </Paper>
             </Grid>
             <Grid item md={8} xs={8}>
@@ -78,7 +81,8 @@ export default class PersonList extends React.Component {
               <Grid item md={12} xs={12}>
                 <Paper>
                   <div style={black}>
-                  <FourButtons  ></FourButtons>
+                  <FourButtons fl1={flightResult.flight1}  fl2={flightResult.flight2} fl3={flightResult.flight3} 
+                 fl4={flightResult.flight4} fl5={flightResult.flight5}></FourButtons>
                   </div>
                   <ButtonView></ButtonView>
                 </Paper>

@@ -21,16 +21,8 @@ properties:
       - NOT_SIDE_BIRTH
   flightName:
     type: string
-    enum:
-      - AIR_ASIA
-      - AIR_CARNIVAL
-      - AIR_INDIA
-      - GO_AIR
-      - ATAR_AIR
-      - AIR_BALTIC
-      - BlUE_AIR
-      - DRUK_AIR
-      - EMIRATES
+    example: AIRIND765
+    pattern: '^[A-Z][A-Z][A-Z][A-Z][A-Z][1-9][1-9][1-9]$'
   ticketNum:
     type: string
     example: F2GLK5

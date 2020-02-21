@@ -141,3 +141,4 @@ properties:
     type: string
     example: F2GLK5
     pattern: '^[A-Z][1-9][A-Z][A-Z][A-Z][1-9]$'
+  

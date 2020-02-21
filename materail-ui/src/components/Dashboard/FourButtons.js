@@ -15,7 +15,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ButtonNavigation() {
+export default function ButtonNavigation({fl1,fl2,fl3,fl4,fl5}) {
+  console.log("data is Four"+fl1);
   const classes = useStyles();
   const [value, setValue] = React.useState('recents');
 
@@ -25,10 +26,15 @@ export default function ButtonNavigation() {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-      <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-      <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
+      <BottomNavigationAction label={fl1} value="recents" icon={<RestoreIcon />} />
+
+      <BottomNavigationAction label={fl2} value="favorites" icon={<FavoriteIcon />} />
+
+      <BottomNavigationAction label={fl3} value="nearby" icon={<LocationOnIcon />} />
+
+      <BottomNavigationAction label={fl4} value="nearb" icon={<FolderIcon />} />
+
+      <BottomNavigationAction label={fl5} value="folder" icon={<FolderIcon />} />
     </BottomNavigation>
   );
 }

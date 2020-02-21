@@ -46,7 +46,8 @@ const rows = [
   createData('Gingerbread', 356),
 ];
 
-export default function FullWidthGrid() {
+export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5}) {
+  
   const classes = useStyles();
 
   return (
@@ -57,19 +58,48 @@ export default function FullWidthGrid() {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>NAME</StyledTableCell>
-            <StyledTableCell align="right">VERSION</StyledTableCell>
+            <StyledTableCell>Flight Name</StyledTableCell>
+            <StyledTableCell align="right">Flight Code</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <StyledTableRow key={row.name}>
+           
+        <StyledTableRow >
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {fl1}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
+              <StyledTableCell align="right"> {cd1}</StyledTableCell>
             </StyledTableRow>
-          ))}
+
+            <StyledTableRow >
+              <StyledTableCell component="th" scope="row">
+                {fl2}
+              </StyledTableCell>
+              <StyledTableCell align="right"> {cd2}</StyledTableCell>
+            </StyledTableRow>
+
+            <StyledTableRow >
+              <StyledTableCell component="th" scope="row">
+                {fl3}
+              </StyledTableCell>
+              <StyledTableCell align="right"> {cd3}</StyledTableCell>
+            </StyledTableRow>
+
+            <StyledTableRow >
+              <StyledTableCell component="th" scope="row">
+                {fl4}
+              </StyledTableCell>
+              <StyledTableCell align="right"> {cd4}</StyledTableCell>
+            </StyledTableRow>
+
+            <StyledTableRow >
+              <StyledTableCell component="th" scope="row">
+                {fl5}
+              </StyledTableCell>
+              <StyledTableCell align="right"> {cd5}</StyledTableCell>
+            </StyledTableRow>
+            
+         
         </TableBody>
       </Table>
     </TableContainer>
