@@ -12,20 +12,28 @@ import ButtonView from '../src/components/Dashboard/ButtonVIew';
 
 
 export default class PersonList extends React.Component {
-  
-  state = {
-    name: '',
-    flightRes: [],
+  constructor(props){
+    super(props);
+    this.state = {
+      name: '',
+      flightRes: [],
+    }
+  };
+
+  flightClicked(pageName){
+    alert("clicked"+pageName);
   }
   componentDidMount() {
     axios.get(`http://127.0.0.1:4010/flightLists`)
     .then(res => {
       // console.log(res.data);
       const flightRes = res.data;
+      
       this.setState({ flightRes });
       // console.log(this.state.flightRes);
     })
   }
+
 
 
   render() {
@@ -61,6 +69,10 @@ export default class PersonList extends React.Component {
 
       <div>
 
+
+
+
+
         <Navigation onLoad={this.handleLoad}></Navigation>
         <div >
           <Grid container spacing={3} >
@@ -68,7 +80,7 @@ export default class PersonList extends React.Component {
             <Paper style={Main}>Gateways</Paper>
               <Paper className={paper}>
                 <Table fl1={flightResult.flight1} cd1={flightResult.codeNumber1} fl2={flightResult.flight2} cd2={flightResult.codeNumber2} fl3={flightResult.flight3} 
-                  cd3={flightResult.codeNumber3} fl4={flightResult.flight4} cd4={flightResult.codeNumber4} fl5={flightResult.flight5} cd5={flightResult.codeNumber5}  ></Table>
+                  cd3={flightResult.codeNumber3} fl4={flightResult.flight4} cd4={flightResult.codeNumber4} fl5={flightResult.flight5} cd5={flightResult.codeNumber5} triggerParent={this.flightClicked}   ></Table>
               </Paper>
             </Grid>
             <Grid item md={8} xs={8}>
