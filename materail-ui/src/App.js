@@ -20,7 +20,8 @@ export default class PersonList extends React.Component {
     }
   };
 
-  flightClicked(pageName){
+  flightClicked(pageName)
+  {
     alert("clicked"+pageName);
   }
   componentDidMount() {
@@ -68,11 +69,6 @@ export default class PersonList extends React.Component {
     return (
 
       <div>
-
-
-
-
-
         <Navigation onLoad={this.handleLoad}></Navigation>
         <div >
           <Grid container spacing={3} >

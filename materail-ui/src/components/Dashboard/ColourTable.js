@@ -35,14 +35,10 @@ const StyledTableRow = withStyles(theme => ({
   },
 }))(TableRow);
 
-function handleclick(){
-  alert('This click');
-  }
+ 
 
 export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5,triggerParent}) {
-  
 
-  
   const classes = useStyles();
 
   return (
@@ -68,7 +64,8 @@ export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5,t
 
         </StyledTableRow>
            
-            <StyledTableRow >
+            <StyledTableRow 
+            >
             
               <StyledTableCell component="th" scope="row">
                 {fl2}
