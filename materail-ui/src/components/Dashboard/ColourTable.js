@@ -37,13 +37,12 @@ const StyledTableRow = withStyles(theme => ({
 
  
 
-export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5,triggerParent}) {
+export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5,trigOne,trigTwo,trigThree,trigFour,trigFive}) {
 
   const classes = useStyles();
 
   return (
     <div>
-      
           <TableContainer component={Paper}>
          
       <Table className={classes.table} aria-label="customized table">
@@ -55,7 +54,7 @@ export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5,t
         </TableHead>
         <TableBody>
            
-        <StyledTableRow onClick={triggerParent}>
+        <StyledTableRow onClick={trigOne}>
           
               <StyledTableCell component="th" scope="row">
                 {fl1}
@@ -64,8 +63,7 @@ export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5,t
 
         </StyledTableRow>
            
-            <StyledTableRow 
-            >
+            <StyledTableRow onClick={trigTwo} >
             
               <StyledTableCell component="th" scope="row">
                 {fl2}
@@ -73,21 +71,21 @@ export default function FullWidthGrid({fl1,cd1,fl2,cd2,fl3,cd3,fl4,cd4,fl5,cd5,t
               <StyledTableCell align="right"> {cd2}</StyledTableCell>
             </StyledTableRow>
 
-            <StyledTableRow >
+            <StyledTableRow onClick={trigThree} >
               <StyledTableCell component="th" scope="row">
                 {fl3}
               </StyledTableCell>
               <StyledTableCell align="right"> {cd3}</StyledTableCell>
-            </StyledTableRow>
+            </StyledTableRow  > 
 
-            <StyledTableRow >
+            <StyledTableRow onClick={trigFour}>
               <StyledTableCell component="th" scope="row">
                 {fl4}
               </StyledTableCell>
               <StyledTableCell align="right"> {cd4}</StyledTableCell>
             </StyledTableRow>
 
-            <StyledTableRow >
+            <StyledTableRow onClick={trigFive}>
               <StyledTableCell component="th" scope="row">
                 {fl5}
               </StyledTableCell>

@@ -16,14 +16,31 @@ export default class PersonList extends React.Component {
     super(props);
     this.state = {
       name: '',
+
       flightRes: [],
+      selectFlight:'NonSelected',
     }
   };
 
-  flightClicked(pageName)
-  {
-    alert("clicked"+pageName);
+  flightFive=()=>{
+  
+    this.setState({selectFlight:"as"})
+
   }
+  flightTwo=()=>{
+    this.setState({selectFlight:"Two"});
+  }
+  flightFour=()=>{
+    this.setState({selectFlight:"Four"});
+  }
+  flightOne=()=>{
+    this.setState({selectFlight:"One"});
+  }
+  flightThre=()=>{
+    this.setState({selectFlight:"Three"});
+  }
+
+  
   componentDidMount() {
     axios.get(`http://127.0.0.1:4010/flightLists`)
     .then(res => {
@@ -34,9 +51,6 @@ export default class PersonList extends React.Component {
       // console.log(this.state.flightRes);
     })
   }
-
-
-
   render() {
     const paper = {
       padding: "1em",
@@ -76,14 +90,14 @@ export default class PersonList extends React.Component {
             <Paper style={Main}>Gateways</Paper>
               <Paper className={paper}>
                 <Table fl1={flightResult.flight1} cd1={flightResult.codeNumber1} fl2={flightResult.flight2} cd2={flightResult.codeNumber2} fl3={flightResult.flight3} 
-                  cd3={flightResult.codeNumber3} fl4={flightResult.flight4} cd4={flightResult.codeNumber4} fl5={flightResult.flight5} cd5={flightResult.codeNumber5} triggerParent={this.flightClicked}   ></Table>
+                  cd3={flightResult.codeNumber3} fl4={flightResult.flight4} cd4={flightResult.codeNumber4} fl5={flightResult.flight5} cd5={flightResult.codeNumber5} trigOne={this.flightOne} trigTwo={this.flightTwo} trigThree={this.flightThre} trigFour={this.flightFour} trigFive={this.flightFive}  ></Table>
               </Paper>
             </Grid>
             <Grid item md={8} xs={8}>
               <Grid item md={12} xs={12}>
                 <Paper style={head}>
                   {" "}
-                  Name of Dashboard
+                  Name of {this.state.selectFlight}
           </Paper>
               </Grid>
               <Grid item md={12} xs={12}>
