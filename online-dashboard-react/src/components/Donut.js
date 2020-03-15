@@ -11,7 +11,7 @@ export default class amcharts extends React.Component {
 
 
         am4core.useTheme(am4themes_animated);
-
+       
 
         let chart = am4core.create("donut", am4charts.PieChart);
 
@@ -22,24 +22,29 @@ export default class amcharts extends React.Component {
 
         // Let's cut a hole in our Pie chart the size of 30% the radius
         chart.innerRadius = am4core.percent(30);
+        pieSeries.labels.template.fill = am4core.color("white");
+        pieSeries.tooltip.label.fill = am4core.color("red");
+
 
         // Put a thick white border around each Slice
         pieSeries.slices.template.stroke = am4core.color("#fff");
         pieSeries.slices.template.strokeWidth = 2;
+        // pieSeries.slices.template.propertyFields.fill = "color"; // Use this for Specifying Colors for Donut 
+
         pieSeries.slices.template.strokeOpacity = 1;
         pieSeries.slices.template
-          // change the cursor on hover to make it apparent the object can be interacted with
-          .cursorOverStyle = [
-            {
-              "property": "cursor",
-              "value": "pointer"
-            }
-          ];
+            // change the cursor on hover to make it apparent the object can be interacted with
+            .cursorOverStyle = [
+                {
+                    "property": "cursor",
+                    "value": "pointer"
+                }
+            ];
 
         pieSeries.alignLabels = false;
         pieSeries.labels.template.bent = true;
         pieSeries.labels.template.radius = 3;
-        pieSeries.labels.template.padding(0,0,0,0);
+        pieSeries.labels.template.padding(0, 0, 0, 0);
 
         pieSeries.ticks.template.disabled = true;
 
@@ -59,26 +64,20 @@ export default class amcharts extends React.Component {
         chart.legend = new am4charts.Legend();
 
         chart.data = [{
-          "country": "Lithuania",
-          "litres": 501.9
-        },{
-          "country": "Germany",
-          "litres": 165.8
+            "country": "Lithuania",
+            "litres": 501.9,
+            "color": am4core.color("red"),
         }, {
-          "country": "Australia",
-          "litres": 139.9
+            "country": "Germany",
+            "color": am4core.color("green"),
+            "litres": 165.8
         }, {
-          "country": "Austria",
-          "litres": 128.3
-        }, {
-          "country": "UK",
-          "litres": 99
-        }, {
-          "country": "Belgium",
-          "litres": 60
+            "country": "Australia",
+            "color": am4core.color("blue"),
+            "litres": 139.9
         }];
 
-        
+
 
 
         this.chart = chart;
@@ -96,7 +95,7 @@ export default class amcharts extends React.Component {
         return (
             <div>
                 <h3 className='text-center'>Amchart </h3>
-                   <div id='donut' style={{width:"auto",height:'500px'}}></div>
+                <div id='donut' style={{ width: "auto", height: '500px' }}></div>
 
 
 

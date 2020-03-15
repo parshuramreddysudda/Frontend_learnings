@@ -6,10 +6,11 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 
 
+
 export default class amcharts extends React.Component {
 
 
-    componentDidMount() {
+    componentDidMount=()=> {
 
         am4core.useTheme(am4themes_dataviz);
         am4core.useTheme(am4themes_animated);
@@ -36,6 +37,7 @@ export default class amcharts extends React.Component {
 
         let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
         categoryAxis.dataFields.category = "name";
+        categoryAxis.stroke=am4core.color("white");  //Label color of Company
         categoryAxis.renderer.grid.template.strokeOpacity = 0;
         categoryAxis.renderer.minGridDistance = 10;
         categoryAxis.renderer.labels.template.dx = -40;
@@ -46,6 +48,7 @@ export default class amcharts extends React.Component {
         valueAxis.renderer.inside = true;
         valueAxis.renderer.labels.template.fillOpacity = 0.3;
         valueAxis.renderer.grid.template.strokeOpacity = 0;
+        valueAxis.stroke=am4core.color("white"); 
         valueAxis.min = 0;
         valueAxis.cursorTooltipEnabled = false;
         valueAxis.renderer.baseGrid.strokeOpacity = 0;
@@ -53,6 +56,7 @@ export default class amcharts extends React.Component {
 
         let series = chart.series.push(new am4charts.ColumnSeries);
         series.dataFields.valueX = "steps";
+       
         series.dataFields.categoryY = "name";
         series.tooltipText = "{valueX.value}";
         series.tooltip.pointerOrientation = "vertical";
@@ -65,7 +69,7 @@ export default class amcharts extends React.Component {
         columnTemplate.column.cornerRadius(60, 10, 60, 10);
         columnTemplate.strokeOpacity = 0;
 
-        series.heatRules.push({ target: columnTemplate, property: "fill", dataField: "valueX", min: am4core.color("#e5dc36"), max: am4core.color("#5faa46") });
+        series.heatRules.push({ target: columnTemplate, property: "fill", dataField: "valueX", min: am4core.color("#e5dc36"), max: am4core.color("#343434") });
         series.mainContainer.mask = undefined;
 
         let cursor = new am4charts.XYCursor();

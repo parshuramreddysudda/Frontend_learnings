@@ -144,13 +144,14 @@ export default class Index extends React.Component {
 
           </div>
         </div>
-        <div className=' container-fluid pr-5 pl-5 section' style={smal}>
+        <div className=' container-fluid pr-5 pl-5 ' style={smal}>
           <div className='row'>
-            <div className='col-md-6 col-lg-6'>
-<Barchart></Barchart>
+            <div className=' col-md-6 col-lg-6'>
+              <Paper className="darkCard" style={smal} > <Barchart></Barchart></Paper>
+
             </div>
             <div className='col-md-6 col-lg-6'>
-<Donut></Donut>
+            <Paper className="darkCard" style={smal} ><Donut></Donut></Paper>
             </div>
           </div>
         </div>
