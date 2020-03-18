@@ -103,8 +103,8 @@ export default class PersonList extends React.Component {
               <Grid item md={12} xs={12}>
                 <Paper>
                   <div style={black}>
-                  <FourButtons fl1={flightResult.flight1}  fl2={flightResult.flight2} fl3={flightResult.flight3} 
-                 fl4={flightResult.flight4} fl5={flightResult.flight5}></FourButtons>
+                  <FourButtons fl1={flightResult.flight1}  fl2={flightResult.flight2} fl3={flightResult.flight3}
+    fl4={flightResult.flight4} fl5={flightResult.flight5}/>
                   </div>
                   <ButtonView></ButtonView>
                 </Paper>
