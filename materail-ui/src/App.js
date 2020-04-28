@@ -87,7 +87,7 @@ export default class PersonList extends React.Component {
         <div >
           <Grid container spacing={3} >
             <Grid item md={3} xs={4}>
-            <Paper style={Main}>Gateways</Paper>
+            <Paper style={Main}>Flights </Paper>
               <Paper className={paper}>
                 <Table fl1={flightResult.flight1} cd1={flightResult.codeNumber1} fl2={flightResult.flight2} cd2={flightResult.codeNumber2} fl3={flightResult.flight3} 
                   cd3={flightResult.codeNumber3} fl4={flightResult.flight4} cd4={flightResult.codeNumber4} fl5={flightResult.flight5} cd5={flightResult.codeNumber5} trigOne={this.flightOne} trigTwo={this.flightTwo} trigThree={this.flightThre} trigFour={this.flightFour} trigFive={this.flightFive}  ></Table>
@@ -97,7 +97,7 @@ export default class PersonList extends React.Component {
               <Grid item md={12} xs={12}>
                 <Paper style={head}>
                   {" "}
-                  Name of {this.state.selectFlight}
+                  Flight : {this.state.selectFlight}
           </Paper>
               </Grid>
               <Grid item md={12} xs={12}>
