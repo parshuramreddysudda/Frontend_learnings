@@ -17,7 +17,7 @@ components:
           description: Workspace attributes. Only `type` is required for user creation.
           $ref: 'UserApi/WorkspacedDeviceEntity.yaml'
         location:
-          $ref: 'UserApi/UserLocationEntity.yaml'
+          $ref: 'UserLocationEntity.yaml'
     UserCreateResponseEntity:
       $ref: 'UserApi/UserEntity.yaml'
     UserCollectionEntity:
@@ -115,7 +115,7 @@ paths:
           description: Id of User
           required: true
           schema:
-            $ref: 'UserApi/UserId'
+            $ref: 'UserApi/UserId.yaml'
       responses:
         '200':
           description: User retrieved successfully
@@ -134,7 +134,7 @@ paths:
           description: Id of User
           required: true
           schema:
-            $ref: 'UserApi/UserId'
+            $ref: 'UserApi/UserId.yaml'
       responses:
         '204':
           description: User deleted successfully

@@ -121,9 +121,53 @@ paths:
           content:
             application/json:
               schema:
-                $ref: UserApi/UserEntity.yaml
+                $ref: '#/components/schemas/UserEntity'
         '404':
           description: User not found
+    put:
+      summary: Update a user
+      operationId: dal.users.update
+      parameters:
+        - name: user_id
+          in: path
+          description: Id of User
+          required: true
+          schema:
+            $ref: '#/components/schemas/UserId'
+      requestBody:
+        description: Parameters to update a user.
+        content:
+          application/json:
+            schema:
+              x-body-name: user
+              $ref: '#/components/schemas/UserUpdateEntity'
+            example:
+              name: test_user
+              workspaces_type: vsphere
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserUpdateResponseEntity'
+              example:
+                id: d7d155ec-dee9-d771-e9fd-f84d62e6b59a
+                name: test_user
+                state: unregistered
+                created: '2020-03-12T06:51:50Z'
+                updated: '2020-03-12T06:51:50Z'
+                type: null
+                model: null
+                serial_number: null
+                device_version: null
+                sdp_mode: user
+                notification_channel_status: offline
+                workspaces:
+                  type: vsphere
+                  mode: manual
+        '409':
+          description: Duplicate user name
     delete:
       summary: Delete a user
       operationId: dal.users.delete
@@ -194,12 +238,62 @@ components:
           type: string
           description: user name
         workspaces:
-          description: Workspace attributes. Only `type` is required for user creation.
+          description: Workspace attributes. Only type is required for user creation.
+          $ref: '#/components/schemas/WorkspacedDeviceEntity'
+        location:
+          $ref: '#/components/schemas/UserLocationEntity'
+    UserUpdateEntity:
+      type: object
+      required:
+        - name
+        - workspaces
+      properties:
+        name:
+          type: string
+          description: user name
+        workspaces:
+          description: Workspace attributes. Only type is required for user creation.
           $ref: '#/components/schemas/WorkspacedDeviceEntity'
         location:
           $ref: '#/components/schemas/UserLocationEntity'
     UserCreateResponseEntity:
-      $ref: UserApi/UserEntity.yaml
+      $ref: '#/components/schemas/UserEntity'
+    UserUpdateResponseEntity:
+      $ref: '#/components/schemas/UserEntity'
+    UserEntity:
+      type: object
+      required:
+        - id
+        - name
+        - state
+        - created
+        - updated
+        - type
+      properties:
+        id:
+          $ref: '#/components/schemas/UserId'
+        name:
+          type: string
+          description: Device name
+        state:
+          type: string
+          description: Device state
+          enum:
+            - unregistered
+            - registered
+            - deleted
+        created:
+          type: string
+          format: date-time
+          description: UTC RFC 3339 timestamp of when device is created
+        updated:
+          type: string
+          format: date-time
+          description: UTC RFC 3339 timestamp of when device is updated
+        type:
+          type: string
+          description: Device type
+          nullable: true
     WorkspacedDeviceEntity:
       type: object
       required:
@@ -247,7 +341,7 @@ components:
     UserCollectionEntity:
       type: array
       items:
-        $ref: UserApi/UserEntity.yaml
+        $ref: '#/components/schemas/UserEntity'
     UserLocationEntity:
       type: object
       properties:

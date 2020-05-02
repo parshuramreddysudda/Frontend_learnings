@@ -121,7 +121,7 @@ paths:
           description: Id of User
           required: true
           schema:
-            $ref: UserApi/UserId
+            $ref: UserApi/UserId.yaml
       responses:
         '200':
           description: User retrieved successfully
@@ -140,7 +140,7 @@ paths:
           description: Id of User
           required: true
           schema:
-            $ref: UserApi/UserId
+            $ref: UserApi/UserId.yaml
       responses:
         '204':
           description: User deleted successfully
@@ -255,7 +255,7 @@ UserEntity:
         - pzt-user
       nullable: true
     location:
-      $ref: UserLocationEntity.yaml
+      $ref: UserApi/UserLocationEntity.yaml
     notification_channel_status:
       type: string
       description: Status of the notification channel
