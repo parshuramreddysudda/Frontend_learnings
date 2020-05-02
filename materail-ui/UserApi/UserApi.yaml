@@ -4,11 +4,6 @@ info:
   version: '0.1'
 components:
   schemas:
-    UserId:
-      type: string
-      format: uuid
-      description: Unique device identifier hex uuid string
-      example: e274bf3ebe3841a88ade1630515624c6
     UserCreateEntity:
       type: object
       required:
@@ -20,67 +15,15 @@ components:
           description: user name
         workspaces:
           description: Workspace attributes. Only `type` is required for user creation.
-          $ref: '#/components/schemas/WorkspacedDeviceEntity'
+          $ref: 'UserApi/WorkspacedDeviceEntity.yaml'
         location:
-          $ref: '#/components/schemas/UserLocationEntity'
+          $ref: 'UserApi/UserLocationEntity.yaml'
     UserCreateResponseEntity:
       $ref: 'UserApi/UserEntity.yaml'
-      
-    WorkspacedDeviceEntity:
-      type: object
-      required:
-        - type
-      properties:
-        type:
-          type: string
-          description: >-
-            workspaces type of the device. If type is not presented, the user is
-            not workspaced.
-          enum:
-            - ios
-            - android
-            - windows
-        mode:
-          type: string
-          description: workspaces mode of the device
-          enum:
-            - auto
-            - manual
-          nullable: true
-        state:
-          type: string
-          description: workspaces state of the device
-          enum:
-            - waiting-to-create
-            - waiting-to-update
-            - waiting-to-start
-            - waiting-to-stop
-            - waiting-to-destroy
-            - creating
-            - updating
-            - paused
-            - starting
-            - started
-            - stopping
-            - destroying
-            - destroyed
-            - failed-to-create
-            - failed-to-destroy
-            - waiting-on-certificate
-            - configuring
-            - configured
-          nullable: true
     UserCollectionEntity:
       type: array
       items:
         $ref: 'UserApi/UserEntity.yaml'
-    UserLocationEntity:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Custom name of the location
-          nullable: true
     UserLocationsEntity:
       type: object
       properties:
@@ -89,82 +32,16 @@ components:
           description: Existing custom location names
           items:
             type: string
-    WorkspaceDeviceConfigBaseEntity:
-      type: object
-      properties:
-        admin_username:
-          type: string
-          description: Admin username of the user
-        internal_fqdn:
-          type: string
-          description: Internal FQDN of the user
-        external_fqdn:
-          type: string
-          description: External FQDN of the user
-        management_fqdn:
-          type: string
-          description: Management FQDN of the user
-        company_name:
-          type: string
-          description: Company name of the user
-        primary_dns:
-          type: string
-          description: Primary DNS of the user
-        secondary_dns:
-          type: string
-          description: Secondary DNS of the user
-        private_domain_name:
-          type: string
-          description: Private Domain name of the user
-        public_domain_name:
-          type: string
-          description: Public domain name of the user
-        management_domain_name:
-          type: string
-          description: Management domain name of the user
-        internal_ip_address:
-          type: string
-          description: Internal IP address of the user
-        internal_subnet:
-          type: string
-          description: Internal subnet of the user
-        internal_user:
-          type: string
-          description: Internal user of the user
-        external_ip_address:
-          type: string
-          description: External IP address of the user
-        external_subnet:
-          type: string
-          description: External subnet of the user
-        external_user:
-          type: string
-          description: External user of the user
-        management_ip_address:
-          type: string
-          description: Management IP address of the user
-        public_ip_address:
-          type: string
-          description: The IP address for which a DNS record will be created
-        management_subnet:
-          type: string
-          description: Mangement subnet of the user
-        management_user:
-          type: string
-          description: Mangement user of the user
-        dns_search_domain:
-          type: string
-          description: User's DNS search domain.
     WorkspaceDeviceConfigCreateEntity:
       allOf:
-        - $ref: '#/components/schemas/WorkspaceDeviceConfigBaseEntity'
+        - $ref: 'UserApi/WorkspaceDeviceConfigBaseEntity.yaml'
         - type: object
           properties:
             admin_password:
               type: string
               description: Admin password of the user
     WorkspaceDeviceConfigEntity:
-      $ref: '#/components/schemas/WorkspaceDeviceConfigBaseEntity'
+      $ref: 'UserApi/WorkspaceDeviceConfigBaseEntity.yaml'
     WorkspaceConfigCreateEntity:
       type: object
       properties:
@@ -174,7 +51,7 @@ components:
       type: object
       properties:
         device_id:
-          $ref: '#/components/schemas/UserId'
+          $ref: 'UserApi/UserId.yaml'
         device_config:
           $ref: '#/components/schemas/WorkspaceDeviceConfigEntity'
     WorkspaceConfigResponseEntity:
@@ -238,7 +115,7 @@ paths:
           description: Id of User
           required: true
           schema:
-            $ref: '#/components/schemas/UserId'
+            $ref: 'UserApi/UserId'
       responses:
         '200':
           description: User retrieved successfully
@@ -257,7 +134,7 @@ paths:
           description: Id of User
           required: true
           schema:
-            $ref: '#/components/schemas/UserId'
+            $ref: 'UserApi/UserId'
       responses:
         '204':
           description: User deleted successfully
@@ -273,7 +150,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserLocationsEntity'
+                $ref: 'UserApi/UserLocationsEntity.yaml'
   '/api/users/{user_id}/workspaces':
     post:
       summary: Create user's workspaces config
