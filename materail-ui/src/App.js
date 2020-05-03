@@ -1,120 +1,120 @@
 import React from 'react';
-import axios from 'axios';
-import Card from '../src/components/Card';
-import Navigation from '../src/components/Navigation';
-import Grid from '@material-ui/core/Grid';
-import Table from './components/Dashboard/ColourTable';
+import MainHelper from '../src/Services/MainHelper';
+import MainServices from '../src/Services/MainServices';
+import Container from '@material-ui/core/Container';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';  
+import CreateIcon from '@material-ui/icons/Create';
+import DeleteIcon from '@material-ui/icons/DeleteOutline';
+import TableCell from '@material-ui/core/TableCell';
+import ClearAllIcon from '@material-ui/icons/ClearAll';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography'
-import color from '@material-ui/core/colors/amber';
-import FourButtons from '../src/components/Dashboard/FourButtons';
-import ButtonView from '../src/components/Dashboard/ButtonVIew';
-
-
-export default class PersonList extends React.Component {
-  constructor(props){
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import Button from '@material-ui/core/Button';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import '../src/assests/css/CrudStyles.css'
+export default class Crud extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      users: [],
+      cellName: ['Id', 'Name', 'State', 'Created', 'Updated', 'Type', 'Actions']
 
-      flightRes: [],
-      selectFlight:'NonSelected',
-    }
-  };
-
-  flightFive=()=>{
-  
-    this.setState({selectFlight:"as"})
+    };
+    this.getAllUsers = this.getAllUsers.bind(this);
+    this.resetData = this.resetData.bind(this);
+    this.deleteUserfromId=this.deleteUserfromId.bind(this)
 
   }
-  flightTwo=()=>{
-    this.setState({selectFlight:"Two"});
-  }
-  flightFour=()=>{
-    this.setState({selectFlight:"Four"});
-  }
-  flightOne=()=>{
-    this.setState({selectFlight:"One"});
-  }
-  flightThre=()=>{
-    this.setState({selectFlight:"Three"});
-  }
+  getAllUsers() {
 
-  
-  componentDidMount() {
-    axios.get(`http://127.0.0.1:4010/flightLists`)
-    .then(res => {
-      // console.log(res.data);
-      const flightRes = res.data;
-      
-      this.setState({ flightRes });
-      // console.log(this.state.flightRes);
+    MainServices.getAllUsers().then(response => {
+      this.setState({ users: response.data })
     })
   }
+  resetData(){
+    this.setState({user:[]})
+    console.log("Cleared",this.state.users)
+
+  }
+  componentDidMount() {
+    this.getAllUsers();
+  }
+  deleteUserfromId(id){
+   this.setState({users:MainHelper.deleteUserFromState(id,this.state.users)})
+  }
   render() {
-    const paper = {
-      padding: "1em",
-      textAlign: "left",
-    };
-    const head = {
-      fontSize: '17px',
-      padding: "1em",
-      textAlign: "left",
-      backgroundColor: 'black',
-      color: 'white',
-      fontStyle: 'inherit'
-    }
-    const Main ={
-      padding:'1em',
-      fontSize:'19px',
-      backgroundColor:'black',
-      color:"white",
-    }
-   
-    const black={
-      backgroundColor:'#f4f0f0',
-    }
-    const darkTheme={
-      backgroundColor:'#f4f0f0',
-      color:"white",
-    }    
-    const flightResult=this.state.flightRes;
+
 
     return (
 
       <div>
-        <Navigation onLoad={this.handleLoad}></Navigation>
-        <div >
-          <Grid container spacing={3} >
-            <Grid item md={3} xs={4}>
-            <Paper style={Main}>Flights </Paper>
-              <Paper className={paper}>
-                <Table fl1={flightResult.flight1} cd1={flightResult.codeNumber1} fl2={flightResult.flight2} cd2={flightResult.codeNumber2} fl3={flightResult.flight3} 
-                  cd3={flightResult.codeNumber3} fl4={flightResult.flight4} cd4={flightResult.codeNumber4} fl5={flightResult.flight5} cd5={flightResult.codeNumber5} trigOne={this.flightOne} trigTwo={this.flightTwo} trigThree={this.flightThre} trigFour={this.flightFour} trigFive={this.flightFive}  ></Table>
-              </Paper>
-            </Grid>
-            <Grid item md={8} xs={8}>
-              <Grid item md={12} xs={12}>
-                <Paper style={head}>
-                  {" "}
-                  Flight : {this.state.selectFlight}
-          </Paper>
-              </Grid>
-              <Grid item md={12} xs={12}>
-                <Paper>
-                  <div style={black}>
-                  <FourButtons fl1={flightResult.flight1}  fl2={flightResult.flight2} fl3={flightResult.flight3}
-    fl4={flightResult.flight4} fl5={flightResult.flight5}/>
-                  </div>
-                  <ButtonView></ButtonView>
-                </Paper>
-              </Grid>
-            </Grid>
-          </Grid>
-        </div>
+        <Container >
 
 
+          <TableContainer component={Paper}>
+            <Table className="table" aria-label="simple table">
+              <TableHead>
 
+                <TableRow>
+                  {this.state.cellName.map((name, index) =>
+
+                    <TableCell key={index}>{name}</TableCell>
+                  )}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.state.users.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell component="th" scope="row">
+                      {row.id}
+id              </TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">{row.state}</TableCell>
+                    <TableCell align="right">{row.created}</TableCell>
+                    <TableCell align="right">{row.updated}</TableCell>
+                    <TableCell align="right" >{row.type}</TableCell>
+                    <TableCell>
+                      <Tooltip title="Delete"  onClick={()=>this.deleteUserfromId(row.id)}>
+                        <IconButton aria-label="delete">
+                          <DeleteIcon />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title="Edit">
+                        <IconButton aria-label="Edit">
+                          <CreateIcon />
+                        </IconButton>
+                      </Tooltip> 
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+<br></br>
+          <Grid container spacing={3}>
+        <Grid item xs={6} sm={3}>
+          <Paper className="paper"> <Button onClick={this.getAllUsers}>Request New Data</Button></Paper>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Paper className='paper'>    <Button color="primary" onClick={this.resetData}>ClearAll Data</Button></Paper>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Paper className='paper'>  <Button color="secondary">Secondary</Button></Paper>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Paper className='paper'>  <Button color="secondary">Secondary</Button></Paper>
+        </Grid>
+      </Grid>
+        
+        
+        </Container>
       </div>
     )
   }
