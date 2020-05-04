@@ -8,7 +8,8 @@ import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/DeleteOutline';
 import TableCell from '@material-ui/core/TableCell';
 import ClearAllIcon from '@material-ui/icons/ClearAll';
-import SnackBar from 'react-material-snackbar';
+import SnackBar from '../src/Components/Snackbar';
+import Modal from '../src/Components/Model'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
@@ -27,15 +28,16 @@ export default class Crud extends React.Component {
       cellName: ['Id', 'Name', 'State', 'Created', 'Updated', 'Type', 'Actions'],
       snakOpen: false,
       snakDesc: "Message to be displayed",
-      id:"Used for Checking "
-
+      id: "Used for Checking ",
+      editUser: [
+        { id: "c0d5ec3c-c3a4-b270-e346-cda76f73ab86id", name: "as", state: "asd", created: "asd", updated: "asd", type: "asd" }
+      ]
 
     };
     this.getAllUsers = this.getAllUsers.bind(this);
     this.resetData = this.resetData.bind(this);
     this.deleteUserfromId = this.deleteUserfromId.bind(this)
-    this.openSnak = this.openSnak.bind(this)
-    this.closeSnak = this.closeSnak.bind(this)
+    this.child = React.createRef();
 
   }
   getAllUsers() {
@@ -51,20 +53,24 @@ export default class Crud extends React.Component {
   }
   openSnak(desc) {
     this.setState({ snakOpen: true })
-    this.setState({snakDesc:desc})
+    this.setState({ snakDesc: desc })
   }
-  closeSnak() {
+  closeSnak = () => {
     this.setState({ snakOpen: false })
   }
   componentDidMount() {
     this.getAllUsers();
   }
+  handleEdit(id) {
+
+    this.setState({ editUser: MainHelper.getUserDataFromid(id, this.state.users) })
+
+  }
   deleteUserfromId(id) {
-    if(this.state.id!==id){
-      this.openSnak("User id with "+id+" has been Deleted Succesfully ")
-      this.setState({ users: MainHelper.deleteUserFromState(id, this.state.users) })
-    }
-    this.setState({id:id})
+
+    this.openSnak("User id with " + id + " has been Deleted Succesfully ")
+    this.setState({ users: MainHelper.deleteUserFromState(id, this.state.users) })
+
   }
   render() {
 
@@ -103,7 +109,7 @@ id              </TableCell>
                           <DeleteIcon />
                         </IconButton>
                       </Tooltip>
-                      <Tooltip title="Edit">
+                      <Tooltip title="Edit" onClick={() => this.handleEdit(row.id)}>
                         <IconButton aria-label="Edit">
                           <CreateIcon />
                         </IconButton>
@@ -129,18 +135,11 @@ id              </TableCell>
               <Paper className='paper'>  <Button color="secondary">Secondary</Button></Paper>
             </Grid>
           </Grid>
-
-          <SnackBar show={this.state.snakOpen} style={{ fontFamily: "inherit!important" }} timer={3000} >
-
-            {this.state.snakDesc}  <Tooltip title="Close Me" onClick={this.closeSnak} >
-              <IconButton aria-label="Close Me">
-                <CloseIcon style={{ color: "red" }} />
-              </IconButton>
-            </Tooltip>
-
-          </SnackBar>
-
+          <SnackBar show={this.state.snakOpen} closeSnak={this.closeSnak} desc={this.state.snakDesc} />
+          {/* <Modal user={this.state.editUser}></Modal> */}
         </Container>
+
+
       </div>
     )
   }

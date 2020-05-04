@@ -1,9 +1,8 @@
 
 
-import React from 'react'
-
 const MainHelper = {
-    deleteUserFromState
+    deleteUserFromState,
+    getUserDataFromid
     }
   
   
@@ -12,4 +11,9 @@ const MainHelper = {
         return users.filter(user => user.id !== id)
         
     }
+    function getUserDataFromid(id,user){
+        return user.filter(user =>user.id===id)
+        
+    }
+    
     export default MainHelper;

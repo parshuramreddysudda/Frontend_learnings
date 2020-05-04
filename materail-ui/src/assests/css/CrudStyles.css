@@ -7,3 +7,9 @@
       text-align: center;
 
   }
+  .modal {
+    display: 'flex';
+    padding: 10px;
+    align-items :'center';
+    justify-content: 'center';
+  }
