@@ -26,7 +26,7 @@ const SnackBar=(props)=> {
     <div className={classes.root}>
 
       <Snackbar open={props.show} autoHideDuration={6000} onClose={props.closeSnak}>
-        <Alert onClose={props.closeSnak} severity="warning">
+        <Alert onClose={props.closeSnak} severity={props.snakType}>
           {props.desc}
         </Alert>
       </Snackbar>

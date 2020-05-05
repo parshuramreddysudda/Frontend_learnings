@@ -7,9 +7,8 @@ import TableBody from '@material-ui/core/TableBody';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/DeleteOutline';
 import TableCell from '@material-ui/core/TableCell';
-import ClearAllIcon from '@material-ui/icons/ClearAll';
 import SnackBar from '../src/Components/Snackbar';
-import Modal from '../src/Components/Model'
+import Model from './Components/Model';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
@@ -17,9 +16,16 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import CloseIcon from '@material-ui/icons/Close';
 import TableRow from '@material-ui/core/TableRow';
+import User from './Components/User';
 import '../src/assests/css/CrudStyles.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
 export default class Crud extends React.Component {
   constructor(props) {
     super(props);
@@ -29,10 +35,8 @@ export default class Crud extends React.Component {
       snakOpen: false,
       snakDesc: "Message to be displayed",
       id: "Used for Checking ",
-      editUser: [
-        { id: "c0d5ec3c-c3a4-b270-e346-cda76f73ab86id", name: "as", state: "asd", created: "asd", updated: "asd", type: "asd" }
-      ]
-
+      editUser: "bfbdb982-6017-b232-d125-46662b021b25",
+      modalButton: false,
     };
     this.getAllUsers = this.getAllUsers.bind(this);
     this.resetData = this.resetData.bind(this);
@@ -63,9 +67,11 @@ export default class Crud extends React.Component {
   }
   handleEdit(id) {
 
-    this.setState({ editUser: MainHelper.getUserDataFromid(id, this.state.users) })
+    this.setState({ editUser: id })
+    this.setState({ modalButton: true })
 
   }
+
   deleteUserfromId(id) {
 
     this.openSnak("User id with " + id + " has been Deleted Succesfully ")
@@ -78,7 +84,9 @@ export default class Crud extends React.Component {
     return (
 
       <div>
+        
         <Container >
+        <Router>
           <TableContainer component={Paper}>
             <Table className="table" aria-label="simple table">
               <TableHead>
@@ -91,11 +99,14 @@ export default class Crud extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
+              
                 {this.state.users.map((row) => (
                   <TableRow key={row.id}>
-                    <TableCell component="th" scope="row">
+                      
+                    <TableCell component="th" to={`${row.id}`} scope="row" >
                       {row.id}
-id              </TableCell>
+                    </TableCell>
+                     
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
@@ -117,9 +128,17 @@ id              </TableCell>
                     </TableCell>
                   </TableRow>
                 ))}
+                 
               </TableBody>
             </Table>
           </TableContainer>
+          <Switch>
+          <Route path="/:id" >
+            <User />
+          
+          </Route>
+        </Switch>
+                </Router>
           <br></br>
           <Grid container spacing={3}>
             <Grid item xs={6} sm={3}>
@@ -135,8 +154,9 @@ id              </TableCell>
               <Paper className='paper'>  <Button color="secondary">Secondary</Button></Paper>
             </Grid>
           </Grid>
-          <SnackBar show={this.state.snakOpen} closeSnak={this.closeSnak} desc={this.state.snakDesc} />
-          {/* <Modal user={this.state.editUser}></Modal> */}
+          <SnackBar show={this.state.snakOpen} closeSnak={this.closeSnak} snakType="warning" desc={this.state.snakDesc} />
+
+          <Model user={this.state.editUser} Open={this.state.modalButton}></Model>
         </Container>
 
 
