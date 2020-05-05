@@ -8,24 +8,17 @@ import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/DeleteOutline';
 import TableCell from '@material-ui/core/TableCell';
 import SnackBar from '../src/Components/Snackbar';
-import Model from './Components/Model';
+import EditModel from './Components/Model';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import UserModel from '../src/Components/User'
 import Button from '@material-ui/core/Button';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import User from './Components/User';
 import '../src/assests/css/CrudStyles.css'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
-} from "react-router-dom";
 export default class Crud extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +29,9 @@ export default class Crud extends React.Component {
       snakDesc: "Message to be displayed",
       id: "Used for Checking ",
       editUser: "bfbdb982-6017-b232-d125-46662b021b25",
+      oneUser:'bfbdb982-6017-b232-d125-46662b021b25',
       modalButton: false,
+      userButton:false,
     };
     this.getAllUsers = this.getAllUsers.bind(this);
     this.resetData = this.resetData.bind(this);
@@ -66,12 +61,13 @@ export default class Crud extends React.Component {
     this.getAllUsers();
   }
   handleEdit(id) {
-
     this.setState({ editUser: id })
     this.setState({ modalButton: true })
-
   }
-
+  handleOneUser(id){
+    this.setState({oneUser:id})
+    this.setState({userButton:true})
+  }
   deleteUserfromId(id) {
 
     this.openSnak("User id with " + id + " has been Deleted Succesfully ")
@@ -84,9 +80,7 @@ export default class Crud extends React.Component {
     return (
 
       <div>
-        
         <Container >
-        <Router>
           <TableContainer component={Paper}>
             <Table className="table" aria-label="simple table">
               <TableHead>
@@ -99,14 +93,11 @@ export default class Crud extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-              
                 {this.state.users.map((row) => (
                   <TableRow key={row.id}>
-                      
-                    <TableCell component="th" to={`${row.id}`} scope="row" >
-                      {row.id}
+                    <TableCell component="th" scope="row" >
+                     <Button onClick={()=>this.handleOneUser(row.id)}>{row.id}</Button> 
                     </TableCell>
-                     
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
@@ -128,35 +119,22 @@ export default class Crud extends React.Component {
                     </TableCell>
                   </TableRow>
                 ))}
-                 
               </TableBody>
             </Table>
           </TableContainer>
-          <Switch>
-          <Route path="/:id" >
-            <User />
-          
-          </Route>
-        </Switch>
-                </Router>
           <br></br>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} direction="row" justify="center" alignItems="center" >
             <Grid item xs={6} sm={3}>
               <Paper className="paper"> <Button onClick={this.getAllUsers}>Request New Data</Button></Paper>
             </Grid>
             <Grid item xs={6} sm={3}>
               <Paper className='paper'>    <Button color="primary" onClick={this.resetData}>ClearAll Data</Button></Paper>
             </Grid>
-            <Grid item xs={6} sm={3}>
-              <Paper className='paper'>  <Button color="secondary">Secondary</Button></Paper>
-            </Grid>
-            <Grid item xs={6} sm={3}>
-              <Paper className='paper'>  <Button color="secondary">Secondary</Button></Paper>
-            </Grid>
           </Grid>
           <SnackBar show={this.state.snakOpen} closeSnak={this.closeSnak} snakType="warning" desc={this.state.snakDesc} />
 
-          <Model user={this.state.editUser} Open={this.state.modalButton}></Model>
+          <EditModel user={this.state.editUser} Open={this.state.modalButton}></EditModel>
+          <UserModel user={this.state.oneUser} Open={this.state.userButton}  ></UserModel>
         </Container>
 
 

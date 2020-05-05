@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
     },
-    padCenter:{
-       paddingTop:"25px",
+    padCenter: {
+        paddingTop: "25px",
     }
 }));
 
@@ -30,18 +30,16 @@ const ModalComponent = (props) => {
 
     const [user, setUser] = useState(initUser);
     const [open, setOpen] = useState(false);
-    const [opeCount,setOpenCount]=useState(0);
-    const [snakOpen,setSnakOpen]=useState(false)
-    const [snakDesc,setSnakDesc]=useState("asd")
-    
-
+    const [opeCount, setOpenCount] = useState(0);
+    const [snakOpen, setSnakOpen] = useState(false)
+    const [snakDesc, setSnakDesc] = useState("asd")
     const ApiCall = () => {
         MainServices.getUser(props.user).then(res => {
             setUser(res.data);
-            if(opeCount===0){
+            if (opeCount === 0) {
                 setOpenCount(1);
             }
-            else{
+            else {
                 handleOpen()
             }
         })
@@ -49,21 +47,17 @@ const ModalComponent = (props) => {
     useEffect(() => {
         ApiCall();
     }, [props.user]);
-
-
-    const snakClose=()=>{
+    const snakClose = () => {
         setSnakOpen(false)
     }
     const classes = useStyles();
-   
-    const sendData=()=>{
-        MainServices.putUser(props.user,user.name,user.state,user.created,user.updated,user.type).then(res=>{
+    const sendData = () => {
+        MainServices.putUser(props.user, user.name, user.state, user.created, user.updated, user.type).then(res => {
         })
-        setSnakDesc("User id with "+props.user+" has successfully Updated")
+        setSnakDesc("User id with " + props.user + " has successfully Updated")
         setSnakOpen(true);
         handleClose();
     }
-
     const handleOpen = () => {
         setOpen(true);
     };
@@ -71,17 +65,11 @@ const ModalComponent = (props) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
     }
-    
-
     const handleClose = () => {
         setOpen(false);
     };
-
-
     return (
         <div>
-
-
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -94,54 +82,37 @@ const ModalComponent = (props) => {
                     timeout: 500,
                 }}
             >
-
                 <Fade in={open}>
-                    
                     <Paper className={classes.paper}>
-
-            <h4> You are Editing User With User Id {props.user}</h4>
+                        <h4> You are Editing User With User Id {props.user}</h4>
                         <Grid container spacing={3}>
                             <Grid item md={4} >
-                                <TextField id="outlined-basic Id" label="Id" variant="outlined" name="id" size="small"  value={props.user}  >
+                                <TextField id="outlined-basic Id" label="Id" variant="outlined" name="id" size="small" value={props.user}  >
                                 </TextField>
                             </Grid>
                             <Grid item md={4}>
-
                                 <TextField id="outlined-basic name" label="name" variant="outlined" name="name" size="small" onChange={handleChange} value={user.name} />
-
                             </Grid>
                             <Grid item md={4}>
-
                                 <TextField id="outlined-basic state" label="state" variant="outlined" name="state" size="small" onChange={handleChange} value={user.state} />
-
                             </Grid>
-
                             <Grid item md={4}>
-
                                 <TextField id="outlined-basic cretaed" label="created" variant="outlined" name="created" size="small" onChange={handleChange} value={user.created} />
-
                             </Grid>
                             <Grid item md={4}>
-
                                 <TextField id="outlined-basic updated" label="updated" variant="outlined" name="updated" size="small" onChange={handleChange} value={user.updated} />
-
                             </Grid>
-
                             <Grid item md={4}>
-
-                                <TextField id="outlined-basic type" label="type" variant="outlined" size="small" name="type" onChange={handleChange} value={user.type||''} />
-
+                                <TextField id="outlined-basic type" label="type" variant="outlined" size="small" name="type" onChange={handleChange} value={user.type || ''} />
                             </Grid>
-
                         </Grid>
-                        <Grid container  direction="row" justify="center" alignItems="center" className={classes.padCenter}>
-                        <Button  variant="contained" color="primary" onClick={sendData} > Submit </Button>
+                        <Grid container direction="row" justify="center" alignItems="center" className={classes.padCenter}>
+                            <Button variant="contained" color="primary" onClick={sendData} > Submit </Button>
                         </Grid>
-                       
                     </Paper>
                 </Fade>
             </Modal>
-            <SnackBar show={snakOpen}  desc={snakDesc} snakType="info" closeSnak={snakClose}/>
+            <SnackBar show={snakOpen} desc={snakDesc} snakType="info" closeSnak={snakClose} />
         </div>
     );
 }
