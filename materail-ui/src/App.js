@@ -8,7 +8,8 @@ import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/DeleteOutline';
 import TableCell from '@material-ui/core/TableCell';
 import SnackBar from '../src/Components/Snackbar';
-import EditModel from './Components/Model';
+import EditModel from './Components/EditUser';
+import Loader from './Components/Loader'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
@@ -19,6 +20,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import '../src/assests/css/CrudStyles.css'
+import CreateUser from './Components/CreateUser';
 export default class Crud extends React.Component {
   constructor(props) {
     super(props);
@@ -31,12 +33,16 @@ export default class Crud extends React.Component {
       editUser: "bfbdb982-6017-b232-d125-46662b021b25",
       oneUser:'bfbdb982-6017-b232-d125-46662b021b25',
       modalButton: false,
+      createButton:false,
       userButton:false,
     };
     this.getAllUsers = this.getAllUsers.bind(this);
     this.resetData = this.resetData.bind(this);
     this.deleteUserfromId = this.deleteUserfromId.bind(this)
     this.child = React.createRef();
+    this.createUser=this.createUser.bind(this)
+    this.closeCreateUser=this.closeCreateUser.bind(this)
+
 
   }
   getAllUsers() {
@@ -68,6 +74,12 @@ export default class Crud extends React.Component {
     this.setState({oneUser:id})
     this.setState({userButton:true})
   }
+  createUser(){
+    this.setState({createButton:true});
+  }
+  closeCreateUser(){
+    this.setState({createButton:false});
+  }
   deleteUserfromId(id) {
 
     this.openSnak("User id with " + id + " has been Deleted Succesfully ")
@@ -82,9 +94,13 @@ export default class Crud extends React.Component {
       <div>
         <Container >
           <TableContainer component={Paper}>
+          <Grid container spacing={3} direction="row" justify="flex-end" alignItems="center" >
+            <Grid item xs={6} sm={3}>
+              <Paper className='paper'>   <Button size="small" color="primary" onClick={this.createUser}>Create User Data</Button></Paper>
+            </Grid>
+          </Grid>
             <Table className="table" aria-label="simple table">
               <TableHead>
-
                 <TableRow>
                   {this.state.cellName.map((name, index) =>
 
@@ -134,10 +150,11 @@ export default class Crud extends React.Component {
           <SnackBar show={this.state.snakOpen} closeSnak={this.closeSnak} snakType="warning" desc={this.state.snakDesc} />
 
           <EditModel user={this.state.editUser} Open={this.state.modalButton}></EditModel>
+          <CreateUser   Open={this.state.createButton}  closeModel={this.closeCreateUser}> </CreateUser>
           <UserModel user={this.state.oneUser} Open={this.state.userButton}  ></UserModel>
         </Container>
 
-
+<Loader></Loader>
       </div>
     )
   }

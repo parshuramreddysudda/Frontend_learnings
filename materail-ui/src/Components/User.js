@@ -76,7 +76,7 @@ const UserComponent = (props) => {
       >
         <Fade in={open}>
           <Paper className={classes.paper}>
-            <h4> You are Editing User With User Id {props.user}</h4>
+            <h4> You are Viewing User With User Id {props.user}</h4>
             <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
               <Card className={classes.root}>
                 <CardActionArea>

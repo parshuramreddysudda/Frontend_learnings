@@ -87,7 +87,7 @@ const ModalComponent = (props) => {
                         <h4> You are Editing User With User Id {props.user}</h4>
                         <Grid container spacing={3}>
                             <Grid item md={4} >
-                                <TextField id="outlined-basic Id" label="Id" variant="outlined" name="id" size="small" value={props.user}  >
+                                <TextField id="outlined-basic Id" disabled label="Id" variant="outlined" name="id" size="small" value={props.user}  >
                                 </TextField>
                             </Grid>
                             <Grid item md={4}>
