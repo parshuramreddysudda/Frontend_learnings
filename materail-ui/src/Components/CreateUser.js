@@ -39,7 +39,7 @@ const CreateUser = (props) => {
     }
     useEffect(() => {
         ApiCall();
-    }, [props.Open]);
+    }, [props.count]);
     const snakClose = () => {
         setSnakOpen(false)
     }

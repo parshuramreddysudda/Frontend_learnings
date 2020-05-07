@@ -35,6 +35,8 @@ export default class Crud extends React.Component {
       modalButton: false,
       createButton:false,
       userButton:false,
+      editUserCount:0,
+      createUserCount:0,
     };
     this.getAllUsers = this.getAllUsers.bind(this);
     this.resetData = this.resetData.bind(this);
@@ -69,6 +71,7 @@ export default class Crud extends React.Component {
   handleEdit(id) {
     this.setState({ editUser: id })
     this.setState({ modalButton: true })
+    this.setState({editUserCount:this.state.editUserCount+1})
   }
   handleOneUser(id){
     this.setState({oneUser:id})
@@ -76,6 +79,7 @@ export default class Crud extends React.Component {
   }
   createUser(){
     this.setState({createButton:true});
+    this.setState({createUserCount:this.state.createUserCount+1})
   }
   closeCreateUser(){
     this.setState({createButton:false});
@@ -149,8 +153,8 @@ export default class Crud extends React.Component {
           </Grid>
           <SnackBar show={this.state.snakOpen} closeSnak={this.closeSnak} snakType="warning" desc={this.state.snakDesc} />
 
-          <EditModel user={this.state.editUser} Open={this.state.modalButton}></EditModel>
-          <CreateUser   Open={this.state.createButton}  closeModel={this.closeCreateUser}> </CreateUser>
+          <EditModel user={this.state.editUser} count={this.state.editUserCount} Open={this.state.modalButton}></EditModel>
+          <CreateUser   Open={this.state.createButton} count={this.state.createUserCount}  closeModel={this.closeCreateUser}> </CreateUser>
           <UserModel user={this.state.oneUser} Open={this.state.userButton}  ></UserModel>
         </Container>
 

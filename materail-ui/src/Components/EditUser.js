@@ -5,7 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { Grid, Button, TextField, Paper } from '@material-ui/core'
 import MainServices from '../Services/MainServices';
-import SnackBar from '../Components/Snackbar'
+import SnackBar from './Snackbar'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -46,7 +46,7 @@ const ModalComponent = (props) => {
     }
     useEffect(() => {
         ApiCall();
-    }, [props.user]);
+    }, [props.count]);
     const snakClose = () => {
         setSnakOpen(false)
     }
