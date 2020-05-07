@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     // display: 'flex',
     position: "absolute",
     left: "calc(50% - 20px)",
-    top:"40%",
+    top:"50%",
   },
 }));
 

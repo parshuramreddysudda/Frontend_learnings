@@ -37,6 +37,7 @@ export default class Crud extends React.Component {
       userButton:false,
       editUserCount:0,
       createUserCount:0,
+      isLoading:true,
     };
     this.getAllUsers = this.getAllUsers.bind(this);
     this.resetData = this.resetData.bind(this);
@@ -48,10 +49,13 @@ export default class Crud extends React.Component {
 
   }
   getAllUsers() {
-
+   this.setState({isLoading:false})
     MainServices.getAllUsers().then(response => {
       this.setState({ users: response.data })
-    })
+    }).finally(
+      this.setState({isLoading:true})
+    )
+ 
   }
   resetData() {
     this.setState({ user: [] })
@@ -90,12 +94,14 @@ export default class Crud extends React.Component {
     this.setState({ users: MainHelper.deleteUserFromState(id, this.state.users) })
 
   }
+ 
   render() {
 
 
     return (
 
       <div>
+        {this.state.isLoading?
         <Container >
           <TableContainer component={Paper}>
           <Grid container spacing={3} direction="row" justify="flex-end" alignItems="center" >
@@ -156,9 +162,9 @@ export default class Crud extends React.Component {
           <EditModel user={this.state.editUser} count={this.state.editUserCount} Open={this.state.modalButton}></EditModel>
           <CreateUser   Open={this.state.createButton} count={this.state.createUserCount}  closeModel={this.closeCreateUser}> </CreateUser>
           <UserModel user={this.state.oneUser} Open={this.state.userButton}  ></UserModel>
-        </Container>
-
-<Loader></Loader>
+        </Container>:
+         <Loader></Loader>
+         }
       </div>
     )
   }
