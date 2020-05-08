@@ -51,7 +51,7 @@ const UserComponent = (props) => {
 
   useEffect(() => {
     ApiCall();
-  }, [props.user]);
+  }, [props.count]);
 
   const classes = useStyles();
   const handleOpen = () => {
