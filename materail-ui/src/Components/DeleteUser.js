@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -18,7 +17,7 @@ function PaperComponent(props) {
   );
 }
 
-const UserComponent = (props) => {{
+const UserComponent = (props) => {
 
     const [open, setOpen] = useState(false);
     const [opeCount, setOpenCount] = useState(0);
@@ -62,7 +61,7 @@ const UserComponent = (props) => {{
         aria-labelledby="draggable-dialog-title"
       >
         <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          Subscribe
+          Confirm Delete
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -83,7 +82,5 @@ const UserComponent = (props) => {{
   );
 }
 
-
-}
 
 export default UserComponent;
