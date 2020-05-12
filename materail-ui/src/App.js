@@ -64,7 +64,7 @@ export default class Crud extends React.Component {
 
   }
   resetData() {
-    this.setState({ user: [] })
+    this.setState({ users: [] })
     console.log("Cleared", this.state.users)
 
   }
