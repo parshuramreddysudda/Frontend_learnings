@@ -36,7 +36,7 @@ class Car extends React.Component{
 
       }
       evaluate()  {
-        this.state.secNum=this.state.input;
+        this.setState({secNum:this.state.input})
         if(this.state.operator === "+") {
           this.setState({
             input: parseInt(this.state.secNum) + parseInt(this.state.firNum)
