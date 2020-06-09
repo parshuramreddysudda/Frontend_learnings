@@ -35,7 +35,19 @@ class Car extends React.Component{
     //    console.log(this.state.operator);
 
       }
-      evaluate()  {
+      evaluateTest=(num1,num2,sign)=>{
+        
+        switch (sign) {
+          case "+":
+            return num1+num2;
+          case "-":
+            return num1-num2;
+          default:
+            return 0;
+        }
+
+      }
+      evaluate() {
         this.state.secNum=this.state.input;
         if(this.state.operator === "+") {
           this.setState({
