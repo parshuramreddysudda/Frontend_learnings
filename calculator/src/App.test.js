@@ -18,7 +18,4 @@ describe("Evaluate Function", () => {
     const output3 = -85;
     expect(input3).toEqual(output3);
   })
-
-
-
 });
