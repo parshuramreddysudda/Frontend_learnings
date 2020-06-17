@@ -27,7 +27,7 @@ function App() {
       <button type="button" class="operator btn btn-info" value="*">&times;</button>
       <button type="button" class="operator btn btn-info" value="/">&divide;</button>
 
-      <button type="button" value="7" class="btn btn-light waves-effect">7</button>
+      <button type="button" id="7" value="7" class="btn btn-light waves-effect">7</button>
       <button type="button" value="8" class="btn btn-light waves-effect">8</button>
       <button type="button" value="9" class="btn btn-light waves-effect">9</button>
 
