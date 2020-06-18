@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 
 
 
-class Car extends React.Component {
+class Calculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,15 +76,11 @@ class Car extends React.Component {
     }
   };
   clearAll() {
-
-
     this.setState({
       input: "",
       operator: ""
     });
   };
-
-
 
   render() {
     return (
@@ -127,7 +123,7 @@ class Car extends React.Component {
     )
   }
 }
-ReactDOM.render(<Car />, document.getElementById('root'));
+ReactDOM.render(<Calculator />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

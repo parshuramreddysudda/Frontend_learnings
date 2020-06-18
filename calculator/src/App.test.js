@@ -1,14 +1,14 @@
 import { React } from "react";
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {Index} from './index.js'
+import App from './App';
 
 Enzyme.configure({adapter: new Adapter});
 
 describe('Index Componennt', () => {
 
   it('it should fill the value ', () => {
-    const wrapper=shallow(<Index/>)
+    const wrapper=shallow(<App/>)
     const button=wrapper.find('#7')
     button.simulate('click')
     const text=wrapper.find('input')
