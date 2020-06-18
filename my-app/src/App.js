@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from './logo.svg';
 import Footer from './Footer'
 import './App.css';
 export default class Counter extends React.Component {
